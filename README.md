@@ -1,1 +1,1 @@
-[Link to play game in itch.io](https://www.genome.gov/](https://n4pe.itch.io/dude-with-a-cloak)
+[Link to play game in itch.io](https://n4pe.itch.io/dude-with-a-cloak)
