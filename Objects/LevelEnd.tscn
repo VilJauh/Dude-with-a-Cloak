@@ -1,0 +1,73 @@
+[gd_scene load_steps=8 format=3 uid="uid://bo7btoqt4r33p"]
+
+[ext_resource type="Script" path="res://Scripts/LevelEnd.gd" id="1_ieo7j"]
+[ext_resource type="Texture2D" uid="uid://bjbbrg8rbeiuv" path="res://Sprites/Objects/portalsSpriteSheet.png" id="2_2y1jk"]
+[ext_resource type="PackedScene" uid="uid://cerw6xegjyupv" path="res://Scenes/level_completed.tscn" id="3_7p77n"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iytwh"]
+size = Vector2(38, 49)
+
+[sub_resource type="Animation" id="Animation_mvn7i"]
+resource_name = "Portal_animation"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("portal:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [12, 13, 14, 15]
+}
+
+[sub_resource type="Animation" id="Animation_kg710"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("portal:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [12]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_i78vi"]
+_data = {
+"Portal_animation": SubResource("Animation_mvn7i"),
+"RESET": SubResource("Animation_kg710")
+}
+
+[node name="LevelEnd" type="Area2D"]
+collision_layer = 0
+script = ExtResource("1_ieo7j")
+
+[node name="portal" type="Sprite2D" parent="."]
+texture = ExtResource("2_2y1jk")
+hframes = 4
+vframes = 4
+frame = 12
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_iytwh")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_i78vi")
+}
+autoplay = "Portal_animation"
+
+[node name="LevelCompleted" parent="." instance=ExtResource("3_7p77n")]
+offset_left = -320.0
+offset_top = -192.0
+offset_right = -320.0
+offset_bottom = -192.0
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

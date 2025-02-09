@@ -1,0 +1,142 @@
+[gd_scene load_steps=6 format=3 uid="uid://ixe8w7tev62f"]
+
+[ext_resource type="Theme" uid="uid://8xsyb1abhsla" path="res://recources/menu_UI.tres" id="1_1wfld"]
+[ext_resource type="Script" path="res://Scripts/levels_menu.gd" id="2_npdyd"]
+[ext_resource type="Texture2D" uid="uid://b4dbadltcgb5y" path="res://Sprites/Objects/star_bg.png" id="3_pm7ig"]
+[ext_resource type="Texture2D" uid="uid://bfjyhptcin5mo" path="res://Sprites/Objects/star.png" id="4_b4f4s"]
+[ext_resource type="AudioStream" uid="uid://cwlbv8d182vpp" path="res://SFX/click.wav" id="5_kikh5"]
+
+[node name="LevelsMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_1wfld")
+script = ExtResource("2_npdyd")
+metadata/_edit_lock_ = true
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 0
+offset_right = 320.0
+offset_bottom = 368.0
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Level 1" type="Button" parent="CenterContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Level 1
+"
+
+[node name="Level 2" type="Button" parent="CenterContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Level 2"
+
+[node name="Level 3" type="Button" parent="CenterContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Level 3
+"
+
+[node name="Level 4" type="Button" parent="CenterContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Level 4"
+
+[node name="Level 5" type="Button" parent="CenterContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Level 5
+"
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 24.0
+offset_right = 104.0
+offset_bottom = 64.0
+
+[node name="back" type="Button" parent="MarginContainer"]
+layout_mode = 2
+text = "Back
+"
+metadata/_edit_lock_ = true
+
+[node name="StarBg" type="Sprite2D" parent="."]
+position = Vector2(320, 160)
+scale = Vector2(2, 2)
+texture = ExtResource("3_pm7ig")
+
+[node name="Star" type="Sprite2D" parent="StarBg"]
+visible = false
+texture = ExtResource("4_b4f4s")
+
+[node name="StarBg2" type="Sprite2D" parent="."]
+position = Vector2(416, 160)
+scale = Vector2(2, 2)
+texture = ExtResource("3_pm7ig")
+
+[node name="Star2" type="Sprite2D" parent="StarBg2"]
+visible = false
+texture = ExtResource("4_b4f4s")
+
+[node name="StarBg3" type="Sprite2D" parent="."]
+position = Vector2(512, 160)
+scale = Vector2(2, 2)
+texture = ExtResource("3_pm7ig")
+
+[node name="Star3" type="Sprite2D" parent="StarBg3"]
+visible = false
+texture = ExtResource("4_b4f4s")
+
+[node name="Current_level" type="Label" parent="."]
+layout_mode = 0
+offset_left = 336.0
+offset_top = 64.0
+offset_right = 496.0
+offset_bottom = 87.0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Personal_best" type="Label" parent="."]
+layout_mode = 0
+offset_left = 344.0
+offset_top = 248.0
+offset_right = 488.0
+offset_bottom = 271.0
+
+[node name="Locked" type="Label" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 360.0
+offset_top = 88.0
+offset_right = 472.0
+offset_bottom = 114.0
+text = "Locked 0/0
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Star" type="Sprite2D" parent="Locked"]
+position = Vector2(112, 12)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("4_b4f4s")
+
+[node name="click" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_kikh5")
+bus = &"Sound effects"
+
+[connection signal="mouse_entered" from="CenterContainer/MarginContainer/VBoxContainer/Level 1" to="." method="_on_level_1_mouse_entered"]
+[connection signal="pressed" from="CenterContainer/MarginContainer/VBoxContainer/Level 1" to="." method="_on_level_1_pressed"]
+[connection signal="mouse_entered" from="CenterContainer/MarginContainer/VBoxContainer/Level 2" to="." method="_on_level_2_mouse_entered"]
+[connection signal="pressed" from="CenterContainer/MarginContainer/VBoxContainer/Level 2" to="." method="_on_level_2_pressed"]
+[connection signal="mouse_entered" from="CenterContainer/MarginContainer/VBoxContainer/Level 3" to="." method="_on_level_3_mouse_entered"]
+[connection signal="pressed" from="CenterContainer/MarginContainer/VBoxContainer/Level 3" to="." method="_on_level_3_pressed"]
+[connection signal="mouse_entered" from="CenterContainer/MarginContainer/VBoxContainer/Level 4" to="." method="_on_level_4_mouse_entered"]
+[connection signal="pressed" from="CenterContainer/MarginContainer/VBoxContainer/Level 4" to="." method="_on_level_4_pressed"]
+[connection signal="mouse_entered" from="CenterContainer/MarginContainer/VBoxContainer/Level 5" to="." method="_on_level_5_mouse_entered"]
+[connection signal="pressed" from="CenterContainer/MarginContainer/VBoxContainer/Level 5" to="." method="_on_level_5_pressed"]
+[connection signal="mouse_entered" from="MarginContainer/back" to="." method="_on_back_mouse_entered"]
+[connection signal="pressed" from="MarginContainer/back" to="." method="_on_back_pressed"]

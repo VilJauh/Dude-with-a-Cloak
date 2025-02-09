@@ -1,0 +1,156 @@
+[gd_scene load_steps=6 format=3 uid="uid://cerw6xegjyupv"]
+
+[ext_resource type="Theme" uid="uid://8xsyb1abhsla" path="res://recources/menu_UI.tres" id="1_uvkta"]
+[ext_resource type="Script" path="res://Scripts/level_completed.gd" id="2_mn0e7"]
+[ext_resource type="Texture2D" uid="uid://b4dbadltcgb5y" path="res://Sprites/Objects/star_bg.png" id="3_ufn0l"]
+[ext_resource type="Texture2D" uid="uid://bfjyhptcin5mo" path="res://Sprites/Objects/star.png" id="4_3btcm"]
+[ext_resource type="AudioStream" uid="uid://cwlbv8d182vpp" path="res://SFX/click.wav" id="5_gebk3"]
+
+[node name="LevelCompleted" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+theme = ExtResource("1_uvkta")
+script = ExtResource("2_mn0e7")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 2
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+offset_right = 640.0
+offset_bottom = 368.0
+color = Color(0, 0, 0, 0.705882)
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+offset_left = 256.0
+offset_top = 192.0
+offset_right = 385.0
+offset_bottom = 218.0
+theme = ExtResource("1_uvkta")
+text = "Level Completed"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PB" type="Label" parent="CanvasLayer"]
+offset_left = 16.0
+offset_top = 24.0
+offset_right = 160.0
+offset_bottom = 48.0
+theme = ExtResource("1_uvkta")
+vertical_alignment = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer"]
+offset_top = 192.0
+offset_right = 640.0
+offset_bottom = 368.0
+theme = ExtResource("1_uvkta")
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="CanvasLayer/CenterContainer"]
+layout_mode = 2
+
+[node name="Retry" type="Button" parent="CanvasLayer/CenterContainer/VBoxContainer2"]
+layout_mode = 2
+text = "Retry"
+
+[node name="LevelSelection" type="Button" parent="CanvasLayer/CenterContainer/VBoxContainer2"]
+layout_mode = 2
+text = "Level Selection"
+
+[node name="Time_needed" type="Label" parent="CanvasLayer"]
+visible = false
+offset_left = 160.0
+offset_top = 160.0
+offset_right = 288.0
+offset_bottom = 186.0
+theme_override_font_sizes/font_size = 10
+text = "das"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Time_needed2" type="Label" parent="CanvasLayer"]
+visible = false
+offset_left = 256.0
+offset_top = 160.0
+offset_right = 384.0
+offset_bottom = 186.0
+theme_override_font_sizes/font_size = 10
+text = "das"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Time_needed3" type="Label" parent="CanvasLayer"]
+visible = false
+offset_left = 344.0
+offset_top = 160.0
+offset_right = 488.0
+offset_bottom = 186.0
+theme_override_font_sizes/font_size = 10
+text = "das"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="star_control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 192.0
+offset_top = 96.0
+offset_right = 256.0
+offset_bottom = 160.0
+
+[node name="StarBg" type="Sprite2D" parent="CanvasLayer/star_control"]
+position = Vector2(32, 32)
+scale = Vector2(2, 2)
+texture = ExtResource("3_ufn0l")
+
+[node name="Star" type="Sprite2D" parent="CanvasLayer/star_control/StarBg"]
+visible = false
+texture = ExtResource("4_3btcm")
+
+[node name="star_control2" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 288.0
+offset_top = 96.0
+offset_right = 352.0
+offset_bottom = 160.0
+
+[node name="StarBg2" type="Sprite2D" parent="CanvasLayer/star_control2"]
+position = Vector2(32, 32)
+scale = Vector2(2, 2)
+texture = ExtResource("3_ufn0l")
+
+[node name="Star2" type="Sprite2D" parent="CanvasLayer/star_control2/StarBg2"]
+visible = false
+texture = ExtResource("4_3btcm")
+
+[node name="star_control3" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 384.0
+offset_top = 96.0
+offset_right = 448.0
+offset_bottom = 160.0
+
+[node name="StarBg3" type="Sprite2D" parent="CanvasLayer/star_control3"]
+position = Vector2(32, 32)
+scale = Vector2(2, 2)
+texture = ExtResource("3_ufn0l")
+
+[node name="Star3" type="Sprite2D" parent="CanvasLayer/star_control3/StarBg3"]
+visible = false
+texture = ExtResource("4_3btcm")
+
+[node name="click" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_gebk3")
+bus = &"Sound effects"
+
+[connection signal="mouse_entered" from="CanvasLayer/CenterContainer/VBoxContainer2/Retry" to="." method="_on_retry_mouse_entered"]
+[connection signal="pressed" from="CanvasLayer/CenterContainer/VBoxContainer2/Retry" to="." method="_on_retry_pressed"]
+[connection signal="mouse_entered" from="CanvasLayer/CenterContainer/VBoxContainer2/LevelSelection" to="." method="_on_level_selection_mouse_entered"]
+[connection signal="pressed" from="CanvasLayer/CenterContainer/VBoxContainer2/LevelSelection" to="." method="_on_level_selection_pressed"]
+[connection signal="mouse_entered" from="CanvasLayer/star_control" to="." method="_on_star_control_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/star_control" to="." method="_on_star_control_mouse_exited"]
+[connection signal="mouse_entered" from="CanvasLayer/star_control2" to="." method="_on_star_control_2_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/star_control2" to="." method="_on_star_control_2_mouse_exited"]
+[connection signal="mouse_entered" from="CanvasLayer/star_control3" to="." method="_on_star_control_3_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/star_control3" to="." method="_on_star_control_3_mouse_exited"]

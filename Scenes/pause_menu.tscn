@@ -1,0 +1,116 @@
+[gd_scene load_steps=5 format=3 uid="uid://82lc1l37dyri"]
+
+[ext_resource type="Theme" uid="uid://8xsyb1abhsla" path="res://recources/menu_UI.tres" id="1_8v2i8"]
+[ext_resource type="Script" path="res://Scripts/pause_menu.gd" id="2_k5auc"]
+[ext_resource type="Script" path="res://Scripts/volume_silder.gd" id="3_feqhb"]
+[ext_resource type="AudioStream" uid="uid://cwlbv8d182vpp" path="res://SFX/click.wav" id="4_2enwx"]
+
+[node name="PauseMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_8v2i8")
+script = ExtResource("2_k5auc")
+metadata/_edit_lock_ = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 3
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+offset_right = 640.0
+offset_bottom = 368.0
+color = Color(0, 0, 0, 0.705882)
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer"]
+offset_right = 641.0
+offset_bottom = 368.0
+theme = ExtResource("1_8v2i8")
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/CenterContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/CenterContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Resume" type="Button" parent="CanvasLayer/CenterContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Resume"
+
+[node name="Checkpoint" type="Button" parent="CanvasLayer/CenterContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Checkpoint"
+
+[node name="Restart" type="Button" parent="CanvasLayer/CenterContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Restart"
+
+[node name="Quit" type="Button" parent="CanvasLayer/CenterContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Quit"
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer"]
+offset_left = 456.0
+offset_top = 104.0
+offset_right = 584.0
+offset_bottom = 253.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MarginContainer"]
+layout_mode = 2
+metadata/_edit_lock_ = true
+
+[node name="Master_label" type="Label" parent="CanvasLayer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Master Volume"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="Master" type="HSlider" parent="CanvasLayer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+max_value = 1.0
+step = 0.001
+script = ExtResource("3_feqhb")
+bus_name = "Master"
+
+[node name="Music_label" type="Label" parent="CanvasLayer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Music"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Music" type="HSlider" parent="CanvasLayer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+max_value = 1.0
+step = 0.001
+script = ExtResource("3_feqhb")
+bus_name = "Music"
+
+[node name="sfx_label" type="Label" parent="CanvasLayer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Sound Effects"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="sfx" type="HSlider" parent="CanvasLayer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+max_value = 1.0
+step = 0.001
+script = ExtResource("3_feqhb")
+bus_name = "Sound effects"
+
+[node name="click" type="AudioStreamPlayer" parent="CanvasLayer"]
+stream = ExtResource("4_2enwx")
+bus = &"Sound effects"
+
+[connection signal="mouse_entered" from="CanvasLayer/CenterContainer/MarginContainer/VBoxContainer/Resume" to="." method="_on_resume_mouse_entered"]
+[connection signal="pressed" from="CanvasLayer/CenterContainer/MarginContainer/VBoxContainer/Resume" to="." method="_on_resume_pressed"]
+[connection signal="mouse_entered" from="CanvasLayer/CenterContainer/MarginContainer/VBoxContainer/Checkpoint" to="." method="_on_checkpoint_mouse_entered"]
+[connection signal="pressed" from="CanvasLayer/CenterContainer/MarginContainer/VBoxContainer/Checkpoint" to="." method="_on_checkpoint_pressed"]
+[connection signal="mouse_entered" from="CanvasLayer/CenterContainer/MarginContainer/VBoxContainer/Restart" to="." method="_on_restart_mouse_entered"]
+[connection signal="pressed" from="CanvasLayer/CenterContainer/MarginContainer/VBoxContainer/Restart" to="." method="_on_restart_pressed"]
+[connection signal="mouse_entered" from="CanvasLayer/CenterContainer/MarginContainer/VBoxContainer/Quit" to="." method="_on_quit_mouse_entered"]
+[connection signal="pressed" from="CanvasLayer/CenterContainer/MarginContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]

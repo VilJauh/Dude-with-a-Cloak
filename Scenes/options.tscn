@@ -1,0 +1,80 @@
+[gd_scene load_steps=5 format=3 uid="uid://djlsh6aki53jf"]
+
+[ext_resource type="Theme" uid="uid://8xsyb1abhsla" path="res://recources/menu_UI.tres" id="1_ilxin"]
+[ext_resource type="Script" path="res://Scripts/options.gd" id="2_s00cv"]
+[ext_resource type="Script" path="res://Scripts/volume_silder.gd" id="3_w5na4"]
+[ext_resource type="AudioStream" uid="uid://cwlbv8d182vpp" path="res://SFX/click.wav" id="4_ywom8"]
+
+[node name="OptionsMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_ilxin")
+script = ExtResource("2_s00cv")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 2
+offset_right = 640.0
+offset_bottom = 368.0
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="MasterVolume" type="Label" parent="CenterContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Master Volume"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Master_volume" type="HSlider" parent="CenterContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+max_value = 1.0
+step = 0.001
+value = 1.0
+script = ExtResource("3_w5na4")
+bus_name = "Master"
+
+[node name="Music" type="Label" parent="CenterContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Music"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Music_volume" type="HSlider" parent="CenterContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+max_value = 1.0
+step = 0.001
+value = 1.0
+script = ExtResource("3_w5na4")
+bus_name = "Music"
+
+[node name="sfx" type="Label" parent="CenterContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Sound Effects"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Sfx_volume" type="HSlider" parent="CenterContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+max_value = 1.0
+step = 0.001
+value = 1.0
+script = ExtResource("3_w5na4")
+bus_name = "Sound effects"
+
+[node name="Back" type="Button" parent="CenterContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Back"
+
+[node name="click" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_ywom8")
+bus = &"Sound effects"
+
+[connection signal="mouse_entered" from="CenterContainer/MarginContainer/VBoxContainer/Back" to="." method="_on_back_mouse_entered"]
+[connection signal="pressed" from="CenterContainer/MarginContainer/VBoxContainer/Back" to="." method="_on_back_pressed"]

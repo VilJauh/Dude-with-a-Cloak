@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://dkn70umkpecwo"]
+
+[ext_resource type="AudioStream" uid="uid://qh1n85076jrk" path="res://SFX/Platformer.wav" id="1_3xw2c"]
+
+[node name="bg_music" type="AudioStreamPlayer"]
+stream = ExtResource("1_3xw2c")
+volume_db = -9.0
+autoplay = true
+bus = &"Music"
